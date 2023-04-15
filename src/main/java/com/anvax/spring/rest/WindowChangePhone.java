@@ -2,6 +2,7 @@ package com.anvax.spring.rest;
 
 import com.anvax.spring.rest.configuration.MyConfig;
 import com.anvax.spring.rest.entity.Employee;
+import com.anvax.spring.rest.entity.Role;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.swing.*;
@@ -15,9 +16,11 @@ public class WindowChangePhone {
     private UUID id;
     private String name;
     private String surname;
-    private String role;
+    private Role role;
     private String department;
     private String phonenumber;
+    private String email;
+    private String password;
 
     public UUID getId() {
         return id;
@@ -43,12 +46,28 @@ public class WindowChangePhone {
         this.surname = surname;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getDepartment() {
@@ -101,7 +120,7 @@ public class WindowChangePhone {
                 employee.setDepartment(getDepartment());
                 employee.setRole(getRole());
                 employee.setSurname(getSurname());
-                employee.setPhonenumber(txt.getText());
+                employee.setPhonenumber(txt.getText().toString());
                 communication.updateEmployee(employee);
                 frame.setVisible(false);
                 WindowMain windowMain=new WindowMain();

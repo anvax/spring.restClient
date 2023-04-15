@@ -15,7 +15,7 @@ import java.util.UUID;
 public class Communication {
     @Autowired
     private RestTemplate restTemplate;
-    private final String URL="http://localhost:8080/Rest/api/employees";
+    private final String URL="http://localhost:8080/api/v1/controller/employees";
     public List<Employee> getAllEmployees(){
         ResponseEntity<List<Employee>> responseEntity=
                 restTemplate.exchange(URL, HttpMethod.GET, null, new ParameterizedTypeReference<List<Employee>>() {});

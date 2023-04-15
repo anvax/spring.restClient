@@ -2,6 +2,7 @@ package com.anvax.spring.rest;
 
 import com.anvax.spring.rest.configuration.MyConfig;
 import com.anvax.spring.rest.entity.Employee;
+import com.anvax.spring.rest.entity.Role;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -19,7 +20,9 @@ public class WindowMain {
     private UUID id;
     private String name;
     private String surname;
-    private String role;
+    private Role role;
+    private String email;
+    private String password;
     private String department;
     private String phonenumber;
     public String getPhonenumber() {
@@ -50,12 +53,28 @@ public class WindowMain {
         this.surname = surname;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getDepartment() {
@@ -82,6 +101,7 @@ public class WindowMain {
         JLabel lbl=new JLabel();
         //JButton btn=new JButton("Submit");
         final JFrame frame=new JFrame();
+        String StringRole;
         JPanel panel=new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder());
         panel.setLayout(new GridLayout(0,1));
@@ -115,14 +135,15 @@ public class WindowMain {
                 System.out.println(explrObject.getString("phonenumber"));
                 if(explrObject.getString("phonenumber").equals(phonenumber)){
                     id=UUID.fromString(explrObject.getString("id"));
-                    role=explrObject.getString("role");
+                    role= Role.valueOf(explrObject.getString("role"));
+                    StringRole=explrObject.getString("role");
                     surname=explrObject.getString("surname");
                     name=explrObject.getString("name");
                     phonenumber=explrObject.getString("phonenumber");
                     department=explrObject.getString("department");
                     System.out.println(role);
                     lblGreetings.setText("Hello, "+name);
-                    if(role.equals("Admin")){
+                    if(role==Role.valueOf(StringRole)){
                         JButton btnChangeEmps=new JButton("Change employees");
                         panel.add(btnChangeEmps);
                         JButton btnChangePhone=new JButton("Change phone number");
@@ -137,6 +158,8 @@ public class WindowMain {
                                 windowChangePhone.setRole(role);
                                 windowChangePhone.setSurname(surname);
                                 windowChangePhone.setPhonenumber(phonenumber);
+                                windowChangePhone.setEmail(email);
+                                windowChangePhone.setPassword(password);
                                 windowChangePhone.showWindow();
                             }
                         });
@@ -161,6 +184,8 @@ public class WindowMain {
                                 windowChangePhone.setRole(role);
                                 windowChangePhone.setSurname(surname);
                                 windowChangePhone.setPhonenumber(phonenumber);
+                                windowChangePhone.setEmail(email);
+                                windowChangePhone.setPassword(password);
                                 windowChangePhone.showWindow();
                             }
                         });
